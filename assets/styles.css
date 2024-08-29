@@ -16,7 +16,7 @@
 /* -------------------------------------------------------------------------------- */
 
 body {
-  background-color: #242424;
+  background-color: #242424e7;
   font-family: "Lato", sans-serif;
 }
 main {
@@ -35,7 +35,7 @@ main {
     height: 50px;
     justify-content: space-between;
     align-items: center;
-    background-color: #cb2e2e;
+    background-color: #a21b1be7;
     padding: 10px 20px;
     color: white;
     position: fixed;
@@ -47,10 +47,15 @@ main {
 }
 
 .navbar-menu {
-    display: flex;
+
     list-style: none;
     margin: 0;
     padding: 5px;
+
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .navbar-menu li {
@@ -67,6 +72,12 @@ main {
 .navbar-menu li a:hover {
     background-color: #575757;
 }
+.navbar-menu.active {
+    /* Mostrar el menú cuando está activo */
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
 
 .navbar-toggler {
     display: none;
@@ -79,19 +90,20 @@ main {
 }
 
 
-
 @media (max-width: 768px) {
     .navbar-menu {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        
         width: 40%;
         height: 100vh;
-        background-color: #7c6464ce;
+        background-color: #9e9292ce;
         position: absolute;
         top: 50px;
         right: 0;
+        padding-top: 40px;
+
+        transform: translateX(100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     }
 
     .navbar-menu li {
@@ -110,7 +122,11 @@ main {
     }
 
     .navbar-menu.active {
-        display: flex;
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        
+        
     }
 }
 
