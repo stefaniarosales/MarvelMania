@@ -47,14 +47,11 @@ main {
 }
 
 .navbar-menu {
-
     list-style: none;
     margin: 0;
     padding: 5px;
-
-    transform: translateX(100%);
-    opacity: 0;
-    visibility: hidden;
+    transition: none;
+    display: flex;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
@@ -99,6 +96,9 @@ main {
         top: 50px;
         right: 0;
         padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        
 
         transform: translateX(100%);
         opacity: 0;
