@@ -1,0 +1,200 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  /* outline: 1px solid rgb(59, 58, 58); */
+}
+
+/* -------------------------------------------------------------------------------- */
+/* ---------------------------------- Estilos generales ----------------------------*/
+/* -------------------------------------------------------------------------------- */
+
+body {
+  background-color: #242424;
+  font-family: "Lato", sans-serif;
+}
+main {
+  width: 100%;
+}
+
+
+
+/* -------------------------------------------------------------------------------- */
+/* ---------------------------------- Menú hamburguesa ---------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #cb2e2e;
+    padding: 10px 20px;
+    color: white;
+    position: fixed;
+}
+
+.logo {
+    width: 50px;
+    height: 20px;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 5px;
+}
+
+.navbar-menu li {
+    margin-left: 20px;
+}
+
+.navbar-menu li a {
+    text-decoration: none;
+    color:  rgb(215, 211, 207);
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.navbar-menu li a:hover {
+    background-color: #575757;
+}
+
+.navbar-toggler {
+    display: none;
+    background: none;
+    border: none;
+    color:  rgb(215, 211, 207);
+    font-size: 1.5em;
+    cursor: pointer;
+    outline: none;
+}
+
+
+
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        
+        width: 40%;
+        height: 100vh;
+        background-color: #7c6464ce;
+        position: absolute;
+        top: 50px;
+        right: 0;
+    }
+
+    .navbar-menu li {
+        margin: 10px;
+        text-align: center;
+        
+    }
+
+    .navbar-toggler {
+        display: block;
+        font-size: 1.5em;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+}
+
+/* -------------------------------------------------------------------------------- */
+/* ---------------------------------- Section-hero -------------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+#hero {
+  /* background-image: url(./public/img/hero/SP.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+ */
+  display: flex;
+  justify-content: center;
+  padding: 2rem 4rem;
+  width: 100%;
+}
+.contenedorImg {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+.contenedorImg img {
+  width: 90%;
+}
+.ocultar {
+  display: none;
+
+}
+/* -------------------------------------------------------------------------------------*/
+/* ---------------------------------- Section-About Us -------------------------------- */
+/* ------------------------------------------------------------------------------------ */
+#aboutUs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 4rem;
+}
+#aboutUs p {
+  font-weight: lighter;
+  text-align: center;
+  padding: 0 0.5rem;
+  max-width: 700px;
+  margin-bottom: 0px;
+}
+h2 {
+  font-weight: bolder;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.container-info {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.info {
+  background-color: rgba(88, 88, 88, 0.384);
+  border-radius: 10px;
+  width: 450px;
+  padding: 0.5rem;
+  margin: 1rem;
+}
+
+.info h3 {
+  color: rgb(215, 211, 207);
+  text-align: center;
+  font-weight: bolder;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* ---------------------------------- Footer -------------------------------- */
+/* -------------------------------------------------------------------------- */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+}
+.logoFooter {
+  width: 2rem;
+}
