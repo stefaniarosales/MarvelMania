@@ -51,7 +51,7 @@ const productosMarvel = [
         descripcion: "Las garras de adamantium de Logan.",
         precio: 1200.99,
         material: "Adamantium",
-        imagen: "assets/img/products/GarrasdeWolverine.jpeg"
+        imagen: "assets/img/products/Garrasdewolverine.jpeg"
     },
     {
         nombre: "Casco de Black Panther",
