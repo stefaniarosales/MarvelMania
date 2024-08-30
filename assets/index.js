@@ -61,4 +61,51 @@ loadMoreButton.addEventListener('click', loadProducts);
 
 
 
+/* -------------------------------------------------------------------------------- */
+/* --------------------------------- Formulario de Contact ------------------------ */
+/* -------------------------------------------------------------------------------- */
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita el envío del formulario
+    
+    // Limpiar mensajes de error
+    let hasError = false;
+    document.getElementById('nameError').textContent = '';
+    document.getElementById('emailError').textContent = '';
+    document.getElementById('messageError').textContent = '';
+    document.getElementById('successMessage').textContent = '';
+
+    // Validación del campo nombre
+    const name = document.getElementById('name').value.trim();
+    if (name === '') {
+        document.getElementById('nameError').textContent = 'El nombre es obligatorio.';
+        hasError = true;
+    }
+
+    // Validación del campo correo electrónico
+    const email = document.getElementById('email').value.trim();
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (email === '') {
+        document.getElementById('emailError').textContent = 'El correo electrónico es obligatorio.';
+        hasError = true;
+    } else if (!emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = 'Introduce un correo electrónico válido.';
+        hasError = true;
+    }
+
+    // Validación del campo mensaje
+    const message = document.getElementById('message').value.trim();
+    if (message === '') {
+        document.getElementById('messageError').textContent = 'El mensaje es obligatorio.';
+        hasError = true;
+    }
+
+    // Mostrar mensaje de éxito si no hay errores
+    if (!hasError) {
+        document.getElementById('successMessage').textContent = 'El formulario ha sido enviado con éxito.';
+        // Opcional: Aquí podrías enviar el formulario usando Fetch API o XMLHttpRequest si fuera necesario.
+        document.getElementById('contactForm').reset(); // Reinicia el formulario
+    }
+});
+
 

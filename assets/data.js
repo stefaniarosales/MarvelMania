@@ -138,7 +138,7 @@ const productosMarvel = [
         nombre: "Capa del Doctor Strange",
         id: 26,
         categoria: "Armas",
-        descripcion: "La varita mágica del Hechicero Supremo.",
+        descripcion: "La capa mágica del Hechicero Supremo.",
         precio: 1500.99,
         material: "Madera mística",
         imagen: "assets/img/products/CapadelDrStrange.jpg"

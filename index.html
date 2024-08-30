@@ -17,9 +17,9 @@
                 ☰
             </button>
             <ul class="navbar-menu" id="navbar-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Products</a></li>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#aboutUs">About Us</a></li>
+                <li><a href="#products">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -61,17 +61,34 @@
         </section>
 
         <!-- products -->
-        <section id="products">
-        </section>
-        <div>
+         <div class="containerProductsBtn">
+            <section id="products">
+            </section>
             <button id="loadMore">
                 Ver más
             </button>
         </div>
+            
         
         <!-- contact -->
         <section id="contact">
-            
+                <h2>Contacto</h2>
+                <form id="contactForm">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                    <span class="error" id="nameError"></span>
+                    
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error" id="emailError"></span>
+                    
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <span class="error" id="messageError"></span>
+                    
+                    <button type="submit">Enviar</button>
+                    <span id="successMessage"></span>
+                </form>
         </section>
     </main>
     <footer>
