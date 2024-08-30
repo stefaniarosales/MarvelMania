@@ -237,6 +237,7 @@ h2 {
 }
 
 .product h3 {
+  height: 55px;
   font-size: 1.5em;
   margin: 10px 0;
   color: #333;
@@ -245,6 +246,7 @@ h2 {
 
 .product p {
   width: 100%;
+  height: 50px;
   font-size: 1em;
   color: #666;
   margin: 10px 0;
@@ -253,7 +255,7 @@ h2 {
 }
 
 .product p strong {
-  color: #333;
+  color: #130101;
 }
 
 .product button {

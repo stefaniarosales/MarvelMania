@@ -3,7 +3,7 @@ const productosMarvel = [
         nombre: "Martillo de Thor",
         id: 1,
         categoria: "Armas",
-        descripcion: "El poderoso martillo de Mjolnir, solo digno de ser empuñado por los más fuertes.",
+        descripcion: "El poderoso martillo, solo digno de ser empuñado por los más fuertes.",
         precio: 999.99,
         material: "Vibranio",
         imagen: 'assets/img/products/MartillodeThor.webp',
