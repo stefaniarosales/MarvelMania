@@ -18,47 +18,169 @@ document.getElementById('navbar-toggler').addEventListener('click', function() {
 /* -------------------------------------------------------------------------------- */
 
 
-let currentIndex = 0;
-const itemsPerPage = 8;
-const productsSection = document.getElementById('products');
-const loadMoreButton = document.getElementById('loadMore');
+let productosFiltrados = [];
+let indiceActual = 0;
+const productosPorPagina = 8;
+const carrito = [];
 
-function loadProducts() {
-    const nextIndex = currentIndex + itemsPerPage;
-    const productsToLoad = productosMarvel.slice(currentIndex, nextIndex);
+function filtrarProductos(categoria) {
+    indiceActual = 0; // Reinicia el índice al filtrar
+    productosFiltrados = categoria === 'Todos' 
+        ? productosMarvel 
+        : productosMarvel.filter(producto => producto.categoria === categoria);
+    
+    mostrarProductos();
 
-    productsToLoad.forEach(producto => {
-        const productDiv = document.createElement('div');
-        productDiv.className = 'product';
+     // Manejo de clases activas para los botones
+     const botones = document.querySelectorAll('.categorias button');
+     botones.forEach(button => {
+         button.classList.remove('active');
+         if (button.innerText === categoria || (categoria === 'Todos' && button.innerText === 'Todos')) {
+             button.classList.add('active');
+         }
+     });
+}
 
-        productDiv.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.nombre}" />
-            <h3>${producto.nombre}</h3>
-            <p>${producto.descripcion}</p>
-            <p><strong>Precio:</strong> $${producto.precio.toFixed(2)}</p>
-            <button>Añadir al carrito</button>
+function mostrarProductos() {
+    const contenedor = document.getElementById('productos');
+    contenedor.innerHTML = '';
+
+    const productosAMostrar = productosFiltrados.slice(0, indiceActual + productosPorPagina);
+    
+    productosAMostrar.forEach(producto => {
+        const productoDiv = document.createElement('div');
+        productoDiv.classList.add('producto');
+
+        productoDiv.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <div>
+                <h2>${producto.nombre}</h2>
+                <p>${producto.descripcion}</p>
+                <p><strong>Precio:</strong> $${producto.precio}</p>
+                <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+            </div>
         `;
 
-        productsSection.appendChild(productDiv);
+        contenedor.appendChild(productoDiv);
     });
 
-    currentIndex = nextIndex;
+    indiceActual += productosPorPagina;
 
-    // Deshabilitar el botón si no quedan más productos
-    if (currentIndex >= productosMarvel.length) {
-        loadMoreButton.disabled = true;
-        loadMoreButton.textContent = 'No hay más productos';
+    // Ocultar el botón "Ver más" si ya se mostraron todos los productos
+    const botonVerMas = document.getElementById('loadMore');
+    if (indiceActual >= productosFiltrados.length) {
+        botonVerMas.style.display = 'none';
+    } else {
+        botonVerMas.style.display = 'block';
     }
 }
 
-// Cargar los primeros productos al inicio
-loadProducts();
+function cargarMasProductos() {
+    mostrarProductos();
+}
 
-// Añadir evento al botón "Ver más"
-loadMoreButton.addEventListener('click', loadProducts);
+// Lógica del carrito
+function agregarAlCarrito(id) {
+    const producto = productosMarvel.find(p => p.id === id);
+    const productoEnCarrito = carrito.find(p => p.id === id);
+
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+    } else {
+        carrito.push({ ...producto, cantidad: 1 });
+    }
+
+    actualizarCarrito();
+    abrirModalCarrito();
+}
+
+function actualizarCarrito() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    cartItems.innerHTML = '';
+
+    let total = 0;
+
+    carrito.forEach(producto => {
+        total += producto.precio * producto.cantidad;
+
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('cart-item');
+
+        itemDiv.innerHTML = `
+            <span>${producto.nombre}</span>
+            <button onclick="cambiarCantidad(${producto.id}, -1)">-</button>
+            <span>${producto.cantidad}</span>
+            <button onclick="cambiarCantidad(${producto.id}, 1)">+</button>
+            <button onclick="eliminarDelCarrito(${producto.id})">🗑️</button>
+        `;
+
+        cartItems.appendChild(itemDiv);
+    });
+
+    cartTotal.innerText = total.toFixed(2);
+}
+
+function abrirModalCarrito() {
+    const cartModal = document.getElementById('cart-modal');
+    cartModal.classList.add('open');
+    cartIcon.innerHTML = '❌';
+}
+function cerrarModalCarrito() {
+    const cartModal = document.getElementById('cart-modal');
+    cartModal.classList.remove('open');
+    cartIcon.innerHTML = '🛒';
+    
+}
+
+function cambiarCantidad(id, delta) {
+    const producto = carrito.find(p => p.id === id);
+    producto.cantidad += delta;
+
+    if (producto.cantidad <= 0) {
+        eliminarDelCarrito(id);
+    } else {
+        actualizarCarrito();
+    }
+}
+
+function eliminarDelCarrito(id) {
+    const index = carrito.findIndex(p => p.id === id);
+    if (index !== -1) {
+        carrito.splice(index, 1);
+        actualizarCarrito();
+    }
+}
+
+document.getElementById('checkout-btn').addEventListener('click', function() {
+    if (carrito.length > 0) {
+        alert('Usted ha realizado la compra con éxito.');
+        carrito.length = 0; // Vaciar carrito
+        actualizarCarrito();
+    } else {
+        alert('El carrito está vacío.');
+    }
+});
 
 
+// Mostrar todos los productos al cargar la página
+filtrarProductos('Todos');
 
+// Lógica para abrir y cerrar el carrito
+document.getElementById('cart-icon').addEventListener('click', function() {
+    const cartModal = document.getElementById('cart-modal');
+    const isOpen = cartModal.classList.toggle('open');
+    this.innerHTML = isOpen ? '❌' : '🛒';
+});
+
+document.getElementById('navbar-toggler').addEventListener('click', function() {
+    const menu = document.getElementById('navbar-menu');
+    const isActive = menu.classList.toggle('active');
+    
+    // Cambiar el icono de hamburguesa a una "X" y viceversa
+    this.innerHTML = isActive ? "✖" : "☰"
+    // Cambia según el estado del menú
+});
 
 
 /* -------------------------------------------------------------------------------- */

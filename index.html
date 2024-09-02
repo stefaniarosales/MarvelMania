@@ -19,9 +19,16 @@
             <ul class="navbar-menu" id="navbar-menu">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#aboutUs">About Us</a></li>
-                <li><a href="#products">Products</a></li>
+                <li><a href="#productos">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="cart-icon" id="cart-icon">🛒</div>
+            <div class="cart-modal" id="cart-modal">
+                <h3>Tu Carrito</h3>
+                <div id="cart-items"></div>
+                <p>Total: $<span id="cart-total">0</span></p>
+                <button id="checkout-btn">Realizar compra</button>
+            </div>
         </nav>
     </header>
 
@@ -62,9 +69,18 @@
 
         <!-- products -->
         <div class="containerProductsBtn">
-            <section id="products">
+            //categorias
+            <div class="categorias">
+                <button onclick="filtrarProductos('Todos')">Todos</button>
+                <button onclick="filtrarProductos('Armas')">Armas</button>
+                <button onclick="filtrarProductos('Joyería')">Joyería</button>
+                <button onclick="filtrarProductos('Trajes')">Trajes</button>
+                <button onclick="filtrarProductos('Accesorios')">Accesorios</button>
+                <button onclick="filtrarProductos('Vehículos')">Vehículos</button>
+            </div>
+            <section id="productos">
             </section>
-            <button id="loadMore">
+            <button id="loadMore" onclick="cargarMasProductos()"> 
                 Ver más
             </button>
         </div>
