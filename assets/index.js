@@ -4,8 +4,9 @@
 /* -------------------------------------------------------------------------------- */
 
 document.getElementById('navbar-toggler').addEventListener('click', function() {
-    const menu = document.getElementById('navbar-menu');
+    const menu = document.getElementById('navbar-menuH');
     const isActive = menu.classList.toggle('active');
+    console.log(isActive)
     
     // Cambiar el icono de hamburguesa a una "X" y viceversa
     this.innerHTML = isActive ? "✖" : "☰"
