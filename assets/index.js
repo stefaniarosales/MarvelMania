@@ -10,6 +10,7 @@ document.getElementById('navbar-toggler').addEventListener('click', function() {
     
     // Cambiar el icono de hamburguesa a una "X" y viceversa
     this.innerHTML = isActive ? "✖" : "☰"
+
 });
 
 
@@ -127,11 +128,17 @@ function actualizarCarrito() {
         itemDiv.classList.add('cart-item');
 
         itemDiv.innerHTML = `
-            <span>${producto.nombre}</span>
-            <button onclick="cambiarCantidad(${producto.id}, -1)">-</button>
-            <span>${producto.cantidad}</span>
-            <button onclick="cambiarCantidad(${producto.id}, 1)">+</button>
-            <button onclick="eliminarDelCarrito(${producto.id})">🗑️</button>
+        
+            <div class="info-item">
+                <span>${producto.nombre}</span>
+                <button onclick="cambiarCantidad(${producto.id}, -1)">-</button>
+                <span>${producto.cantidad}</span>
+                <button onclick="cambiarCantidad(${producto.id}, 1)">+</button>
+            </div>
+            <div class="trash">
+                <button onclick="eliminarDelCarrito(${producto.id})">🗑️</button>
+            </div>
+
         `;
 
         cartItems.appendChild(itemDiv);
@@ -192,6 +199,7 @@ document.getElementById('cart-icon').addEventListener('click', function() {
     const isOpen = cartModal.classList.toggle('open');
     this.innerHTML = isOpen ? '❌' : '🛒';
 });
+
 
 document.getElementById('navbar-toggler').addEventListener('click', function() {
     const menu = document.getElementById('navbar-menu');
