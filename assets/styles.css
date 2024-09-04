@@ -446,7 +446,7 @@ h2 {
   background-image: url(./img/contact/fondo-comic.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: calc();
+  background-position: center;
 }
 #contact {
   width: 100%;
