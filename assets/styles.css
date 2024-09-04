@@ -94,7 +94,7 @@ main {
 
 @media (max-width: 768px) {
     .navbar-menu {
-        width: 40%;
+        width: 45%;
         height: 100vh;
         background-color: #ffffff;
         position: absolute;
@@ -149,7 +149,7 @@ main {
   position: absolute;
   top: 50px;
   right: 20px;
-  width: 400px;
+  width: 360px;
   padding: 20px;
   background-color: rgb(255, 255, 255);
   color: rgb(14, 13, 13);
@@ -218,11 +218,6 @@ main {
   background: none;
   border: none;
   cursor: pointer;
-  color: #ff4d4d;
-}
-
-.cart-item .trash button:hover {
-  color: #ff1a1a;
 }
 
 #cart-total {
@@ -248,10 +243,10 @@ main {
 /* -------------------------------------------------------------------------------- */
 
 #hero {
-  background-color: #5e5c64;
+  background-color: #525056;
   display: flex;
   justify-content: center;
-  padding: 2rem 4rem;
+  padding: 4rem 4rem;
   width: 100%;
 }
 
@@ -275,7 +270,7 @@ main {
 /* ------------------------------------------------------------------------------------ */
 
 #aboutUs {
-  background-color: #5e5c64;
+  background-color:#525056;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -294,7 +289,7 @@ main {
 h2 {
   font-weight: bolder;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .container-info {
@@ -518,7 +513,7 @@ h2 {
 /* -------------------------------------------------------------------------- */
 
 footer {
-  background-color: #201f23;
+  background-color:#525056;
   width: 100%;
   text-align: center;
   padding: 1rem;
