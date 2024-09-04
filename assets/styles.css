@@ -243,17 +243,19 @@ main {
 /* -------------------------------------------------------------------------------- */
 
 #hero {
+  width: 100%;
   background-color: #525056;
   display: flex;
   justify-content: center;
-  padding: 4rem 4rem;
+  object-fit: contain;
   width: 100%;
 }
 
 .contenedorImg {
   display: flex;
   justify-content: center;
-  width: 90%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .contenedorImg img {
