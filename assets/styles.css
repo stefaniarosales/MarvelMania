@@ -8,7 +8,6 @@
   list-style: none;
   text-decoration: none;
   color: rgb(255, 255, 255);
-  /* outline: 1px solid rgb(59, 58, 58); */
 }
 
 /* -------------------------------------------------------------------------------- */
@@ -16,19 +15,17 @@
 /* -------------------------------------------------------------------------------- */
 
 body {
- /*  background-color: #201f23; */
   font-family: "Lato", sans-serif;
 }
+
 main {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-
-
 /* -------------------------------------------------------------------------------- */
-/* ---------------------------------- Menú hamburguesa ---------------------------- */
+/* ---------------------------------- Menú ---------------------------------------- */
 /* -------------------------------------------------------------------------------- */
 
 .navbar {
@@ -72,6 +69,7 @@ main {
     color: #130101;
     border-radius: 5px;
 }
+
 .navbar-menu.active {
     /* Mostrar el menú cuando está activo */
     transform: translateX(0);
@@ -94,7 +92,6 @@ main {
   gap: 10px;
 }
 
-
 @media (max-width: 768px) {
     .navbar-menu {
         width: 40%;
@@ -106,8 +103,6 @@ main {
         padding-top: 40px;
         display: flex;
         flex-direction: column;
-        
-
         transform: translateX(100%);
         opacity: 0;
         visibility: hidden;
@@ -137,8 +132,6 @@ main {
 }
 
 /* Carrito */
-
-/* Icono del carrito */
 .cart-icon {
   font-size: 24px;
   cursor: pointer;
@@ -147,7 +140,6 @@ main {
   background: none;
 }
 
-/* Modal del carrito */
 .cart-modal {
   display: none;
   position: absolute;
@@ -170,7 +162,10 @@ main {
   text-align: center;
 }
 
-/* Items en el carrito */
+.cart-modal p {
+  color: #130101;
+}
+
 .cart-item {
   width: 250px;
   display: flex;
@@ -193,12 +188,13 @@ main {
 #cart-total {
   font-weight: bold;
   font-size: 18px;
+  color: #130101;
 }
 
 #checkout-btn {
   width: 100%;
   padding: 10px;
-  background-color: #28a745;
+  background-color:#76111d;
   color: white;
   border: none;
   cursor: pointer;
@@ -212,32 +208,32 @@ main {
 /* -------------------------------------------------------------------------------- */
 
 #hero {
-  /* background-image: url(./public/img/hero/SP.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
- */
- background-color: #201f23;
+  background-color: #201f23;
   display: flex;
   justify-content: center;
   padding: 2rem 4rem;
   width: 100%;
 }
+
 .contenedorImg {
   display: flex;
   justify-content: center;
   width: 80%;
 }
+
 .contenedorImg img {
   width: 90%;
 }
+
 .ocultar {
   display: none;
 
 }
+
 /* -------------------------------------------------------------------------------------*/
 /* ---------------------------------- Section-About Us -------------------------------- */
 /* ------------------------------------------------------------------------------------ */
+
 #aboutUs {
   background-color: #5e5c64;
   display: flex;
@@ -246,6 +242,7 @@ main {
   gap: 1rem;
   padding: 20px;
 }
+
 #aboutUs p {
   font-weight: lighter;
   text-align: center;
@@ -253,6 +250,7 @@ main {
   max-width: 700px;
   margin-bottom: 0px;
 }
+
 h2 {
   font-weight: bolder;
   text-align: center;
@@ -265,7 +263,6 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
 }
-
 
 .info {
   background-color: rgba(88, 88, 88, 0.384);
@@ -284,12 +281,14 @@ h2 {
 /* -------------------------------------------------------------------------------- */
 /* --------------------------------- Section-Products ----------------------------- */
 /* -------------------------------------------------------------------------------- */
+
 .categorias {
   display: flex;
   flex-wrap:wrap;
   justify-content: center;
   gap: 1rem;
 }
+
 .categorias button {
     padding: 10px 20px;
     color: #130101;
@@ -393,17 +392,14 @@ h2 {
   transition: background-color 0.3s;
 }
 
-
-
-
-/* -------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
 /* ---------------------------------- Section-Contact ------------------------------- */
-/* -------------------------------------------------------------------------- */
-/* Estilos para el contenedor del formulario */
+/* ---------------------------------------------------------------------------------- */
 
 .containerSectionContact {
   padding:20px;
 }
+
 #contact {
   width: 100%;
   max-width: 500px;
@@ -414,7 +410,6 @@ h2 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para el título */
 #contact h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -422,7 +417,6 @@ h2 {
   color: #333;
 }
 
-/* Estilos generales para las etiquetas */
 #contact form label {
   display: block;
   font-weight: bold;
@@ -430,7 +424,6 @@ h2 {
   color: #555;
 }
 
-/* Estilos para los campos de entrada y el textarea */
 #contact form input[type="text"],
 #contact form input[type="email"],
 #contact form textarea {
@@ -444,18 +437,16 @@ h2 {
   color: #130101;
 }
 
-/* Estilos para el campo textarea */
 #contact form textarea {
   height: 120px;
   resize: vertical;
 }
 
-/* Estilos para el botón de envío */
 #contact form button {
   display: inline-block;
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50;
+  background-color:#76111d;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -464,12 +455,10 @@ h2 {
   transition: background-color 0.3s ease;
 }
 
-/* Efecto hover en el botón de envío */
 #contact form button:hover {
-  background-color: #45a049;
+  background-color:#602a2f;
 }
 
-/* Estilo para los mensajes de error */
 .error {
   color: #d9534f;
   font-size: 14px;
@@ -477,7 +466,6 @@ h2 {
   margin-bottom: 10px;
 }
 
-/* Estilo para el mensaje de éxito */
 #successMessage {
   color: #5cb85c;
   font-size: 16px;
@@ -485,17 +473,17 @@ h2 {
   margin-top: 20px;
 }
 
-
-
 /* -------------------------------------------------------------------------- */
 /* ---------------------------------- Footer -------------------------------- */
 /* -------------------------------------------------------------------------- */
+
 footer {
   background-color: #201f23;
   width: 100%;
   text-align: center;
   padding: 1rem;
 }
+
 .logoFooter {
   width: 2rem;
 }

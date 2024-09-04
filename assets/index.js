@@ -4,20 +4,18 @@
 /* -------------------------------------------------------------------------------- */
 
 document.getElementById('navbar-toggler').addEventListener('click', function() {
-    const menu = document.getElementById('navbar-menuH');
+    const menu = document.getElementById('navbar-menu-id');
     const isActive = menu.classList.toggle('active');
     console.log(isActive)
     
     // Cambiar el icono de hamburguesa a una "X" y viceversa
     this.innerHTML = isActive ? "✖" : "☰"
-    // Cambia según el estado del menú
 });
 
 
 /* -------------------------------------------------------------------------------- */
 /* --------------------------------- Renderizado de products ---------------------- */
 /* -------------------------------------------------------------------------------- */
-
 
 let productosFiltrados = [];
 let indiceActual = 0;
@@ -32,14 +30,14 @@ function filtrarProductos(categoria) {
     
     mostrarProductos();
 
-     // Manejo de clases activas para los botones
-     const botones = document.querySelectorAll('.categorias button');
-     botones.forEach(button => {
-         button.classList.remove('active');
-         if (button.innerText === categoria || (categoria === 'Todos' && button.innerText === 'Todos')) {
-             button.classList.add('active');
-         }
-     });
+    // Manejo de clases activas para los botones
+    const botones = document.querySelectorAll('.categorias button');
+    botones.forEach(button => {
+        button.classList.remove('active');
+        if (button.innerText === categoria || (categoria === 'Todos' && button.innerText === 'Todos')) {
+            button.classList.add('active');
+        }
+    });
 }
 
 function mostrarProductos() {
@@ -65,7 +63,7 @@ function mostrarProductos() {
         contenedor.appendChild(productoDiv);
     });
 
-    indiceActual += productosPorPagina;
+    indiceActual += productosPorPagina; 
 
     // Ocultar el botón "Ver más" si ya se mostraron todos los productos
     const botonVerMas = document.getElementById('loadMore');
@@ -80,7 +78,26 @@ function cargarMasProductos() {
     mostrarProductos();
 }
 
-// Lógica del carrito
+/* -------------------------------------------------------------------------------- */
+/* --------------------------------- lógica del carrito --------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+/* LocalStorange */
+//guardar los datos en el localStorange.
+function guardarCarrito() {
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
+//traer los datos del LocalStorange al cargar la pagina.
+function cargarCarrito() {
+    const carritoGuardado =localStorage.getItem("carrito");
+    if(carritoGuardado){
+        carrito.push(...JSON.parse(carritoGuardado));
+        actualizarCarrito()
+    }
+}
+
+
 function agregarAlCarrito(id) {
     const producto = productosMarvel.find(p => p.id === id);
     const productoEnCarrito = carrito.find(p => p.id === id);
@@ -92,6 +109,7 @@ function agregarAlCarrito(id) {
     }
 
     actualizarCarrito();
+    guardarCarrito();
     abrirModalCarrito();
 }
 
@@ -123,16 +141,13 @@ function actualizarCarrito() {
 }
 
 function abrirModalCarrito() {
+    const cartIcon = document.getElementById('cart-icon');
     const cartModal = document.getElementById('cart-modal');
     cartModal.classList.add('open');
     cartIcon.innerHTML = '❌';
+
 }
-function cerrarModalCarrito() {
-    const cartModal = document.getElementById('cart-modal');
-    cartModal.classList.remove('open');
-    cartIcon.innerHTML = '🛒';
-    
-}
+
 
 function cambiarCantidad(id, delta) {
     const producto = carrito.find(p => p.id === id);
@@ -142,6 +157,7 @@ function cambiarCantidad(id, delta) {
         eliminarDelCarrito(id);
     } else {
         actualizarCarrito();
+        guardarCarrito();
     }
 }
 
@@ -150,6 +166,7 @@ function eliminarDelCarrito(id) {
     if (index !== -1) {
         carrito.splice(index, 1);
         actualizarCarrito();
+        guardarCarrito();
     }
 }
 
@@ -158,6 +175,7 @@ document.getElementById('checkout-btn').addEventListener('click', function() {
         alert('Usted ha realizado la compra con éxito.');
         carrito.length = 0; // Vaciar carrito
         actualizarCarrito();
+        guardarCarrito();
     } else {
         alert('El carrito está vacío.');
     }
@@ -166,6 +184,7 @@ document.getElementById('checkout-btn').addEventListener('click', function() {
 
 // Mostrar todos los productos al cargar la página
 filtrarProductos('Todos');
+cargarCarrito();
 
 // Lógica para abrir y cerrar el carrito
 document.getElementById('cart-icon').addEventListener('click', function() {
@@ -180,7 +199,6 @@ document.getElementById('navbar-toggler').addEventListener('click', function() {
     
     // Cambiar el icono de hamburguesa a una "X" y viceversa
     this.innerHTML = isActive ? "✖" : "☰"
-    // Cambia según el estado del menú
 });
 
 
@@ -188,8 +206,8 @@ document.getElementById('navbar-toggler').addEventListener('click', function() {
 /* --------------------------------- Formulario de Contact ------------------------ */
 /* -------------------------------------------------------------------------------- */
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita el envío del formulario
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
     
     // Limpiar mensajes de error
     let hasError = false;
