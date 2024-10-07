@@ -98,7 +98,6 @@ function cargarCarrito() {
     }
 }
 
-
 function agregarAlCarrito(id) {
     const producto = productosMarvel.find(p => p.id === id);
     const productoEnCarrito = carrito.find(p => p.id === id);
@@ -112,6 +111,7 @@ function agregarAlCarrito(id) {
     actualizarCarrito();
     guardarCarrito();
     abrirModalCarrito();
+    ocultarElementosFueraDeLaVista();
 }
 
 function actualizarCarrito() {
@@ -143,6 +143,15 @@ function actualizarCarrito() {
     });
 
     cartTotal.innerText = total.toFixed(2);
+
+     // Comprobar si el carrito está vacío
+     if (carrito.length === 0) {
+        cartItems.style.height = 'auto'; // Ajustar la altura
+        cartItems.style.display = 'none'; // Ocultar el contenedor si está vacío
+    } else {
+        cartItems.style.height = '40vh'; // Volver a la altura establecida si hay productos
+        cartItems.style.display = 'block'; // Mostrar el contenedor si tiene productos
+    }
 }
 
 function abrirModalCarrito() {
@@ -156,12 +165,13 @@ function abrirModalCarrito() {
 function cambiarCantidad(id, delta) {
     const producto = carrito.find(p => p.id === id);
     producto.cantidad += delta;
-    
+
     if (producto.cantidad <= 0) {
         eliminarDelCarrito(id);
     } else {
         actualizarCarrito();
         guardarCarrito();
+        ocultarElementosFueraDeLaVista();
     }
 }
 
@@ -171,6 +181,7 @@ function eliminarDelCarrito(id) {
         carrito.splice(index, 1);
         actualizarCarrito();
         guardarCarrito();
+        ocultarElementosFueraDeLaVista();
     }
 }
 
@@ -205,6 +216,60 @@ document.getElementById('navbar-toggler').addEventListener('click', function() {
     // Cambiar el icono de hamburguesa a una "X" y viceversa
     this.innerHTML = isActive ? "✖" : "☰"
 });
+
+// Función para ocultar los items fuera de la vista
+function ocultarElementosFueraDeLaVista() {
+
+    const cartItems = document.querySelectorAll('.cart-item');
+    const cartModal = document.getElementById('cart-items')
+
+     // Verificar que el contenedor exista y tenga un valor de altura
+     if (!cartModal) {
+        console.error("No se encontró el contenedor del carrito.");
+        return;
+    }
+
+    // Verificar que el contenedor tenga un valor válido de altura
+    if (cartModal.clientHeight === 0) {
+        console.warn("El contenedor del carrito no tiene altura visible.");
+        return;
+    }
+
+    cartItems.forEach(item => {
+        if (item.offsetTop > cartModal.clientHeight) {
+            item.classList.add('hidden');
+        } else {
+            item.classList.remove('hidden');
+        }
+    });
+}
+
+// Llamar a la función cuando se cambia el tamaño de la ventana
+window.addEventListener('resize', ocultarElementosFueraDeLaVista);
+
+//cerrar el carrito y el menu si estos se encuentran abiertos
+document.addEventListener('click', function(event) {
+    const cartModal = document.getElementById('cart-modal');
+    const cartIcon = document.getElementById('cart-icon');
+    const navbarMenu = document.getElementById('navbar-menu-id');
+    const navbarToggler = document.getElementById('navbar-toggler');
+
+    const isClickInsideCart = cartModal.contains(event.target) || cartIcon.contains(event.target);
+    const isClickInsideMenu = navbarMenu.contains(event.target) || navbarToggler.contains(event.target);
+
+    // Cerrar carrito si está abierto y el clic fue fuera de él
+    if (cartModal.classList.contains('open') && !isClickInsideCart) {
+        cartModal.classList.remove('open');
+        cartIcon.innerHTML = '🛒';
+    }
+
+    // Cerrar menú si está activo y el clic fue fuera de él
+    if (navbarMenu.classList.contains('active') && !isClickInsideMenu) {
+        navbarMenu.classList.remove('active');
+        navbarToggler.innerHTML = '☰';
+    }
+});
+
 
 
 /* -------------------------------------------------------------------------------- */

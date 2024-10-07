@@ -176,6 +176,10 @@ main {
   height: 40vh;
 }
 
+.hidden {
+  display: none;
+}
+
 .cart-item {
   display: flex;
   align-items: center;
