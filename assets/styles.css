@@ -171,7 +171,7 @@ main {
   color: #130101;
 }
 
-.cart-items {
+#cart-items {
   overflow-y: auto;
   height: 30vh; /* Ajusta el valor según tus necesidades */
 }
