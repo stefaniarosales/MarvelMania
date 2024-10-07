@@ -135,8 +135,9 @@ main {
         visibility: visible;
     }
 }
-
-/* Carrito */
+/* -------------------------------------------------------------------------------- */
+/* -------------------------------- Carrito --------------------------------------- */
+/* -------------------------------------------------------------------------------- */
 .cart-icon {
   font-size: 21px;
   cursor: pointer;
@@ -170,7 +171,10 @@ main {
   color: #130101;
 }
 
-
+.cart-items {
+  overflow-y: auto;
+  height: 30vh; /* Ajusta el valor según tus necesidades */
+}
 .cart-item {
   display: flex;
   align-items: center;

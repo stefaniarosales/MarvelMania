@@ -138,9 +138,7 @@ function actualizarCarrito() {
             <div class="trash">
                 <button onclick="eliminarDelCarrito(${producto.id})">🗑️</button>
             </div>
-
         `;
-
         cartItems.appendChild(itemDiv);
     });
 
@@ -155,11 +153,10 @@ function abrirModalCarrito() {
 
 }
 
-
 function cambiarCantidad(id, delta) {
     const producto = carrito.find(p => p.id === id);
     producto.cantidad += delta;
-
+    
     if (producto.cantidad <= 0) {
         eliminarDelCarrito(id);
     } else {
