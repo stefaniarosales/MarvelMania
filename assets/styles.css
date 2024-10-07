@@ -173,8 +173,9 @@ main {
 
 #cart-items {
   overflow-y: auto;
-  height: 30vh; /* Ajusta el valor según tus necesidades */
+  height: 40vh;
 }
+
 .cart-item {
   display: flex;
   align-items: center;
