@@ -275,7 +275,27 @@ document.addEventListener('click', function(e) {
     }
 });
 
+/* -------------------------------------------------------------------------------- */
+/* --------------------------------- Btn Scroll  ---------------------------------- */
+/* -------------------------------------------------------------------------------- */
 
+// Mostrar el botón al hacer scroll
+window.onscroll = function() {
+    const scrollBtn = document.getElementById('scrollToTopBtn');
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollBtn.style.display = "block";
+    } else {
+        scrollBtn.style.display = "none";
+    }
+};
+
+// Volver al inicio al hacer clic
+document.getElementById('scrollToTopBtn').addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
 
 
 /* -------------------------------------------------------------------------------- */
