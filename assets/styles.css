@@ -142,8 +142,9 @@ main {
 .cart-modal {
   display: none;
   position: absolute;
+  height: 100vh;
   top: 50px;
-  right: 20px;
+  right: 0;
   width: 360px;
   padding: 20px;
   background-color: rgb(255, 255, 255);
@@ -153,7 +154,10 @@ main {
 }
 
 .cart-modal.open {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
 }
 
 .cart-modal h4 {
@@ -166,7 +170,6 @@ main {
 
 #cart-items {
   overflow-y: auto;
-  height: 40vh;
 }
 
 .hidden {
@@ -252,10 +255,8 @@ main {
 .cart-count {
   position: absolute;
   top: -8px;
-  right: -8px;
+  right: -2px;
   color: white;
-  border-radius: 50%;
-  padding: 10%;
   font-size: 10px;
   font-weight: bold;
   display: flex;
