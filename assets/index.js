@@ -151,20 +151,18 @@ function actualizarCarrito() {
 
     // Comprobar si el carrito está vacío
     if (carrito.length === 0) {
-        cartItems.style.height = 'auto'; // Ajustar la altura
+        /* cartItems.style.height = 'auto'; // Ajustar la altura */
         cartItems.style.display = 'none'; // Ocultar el contenedor si está vacío
     } else {
-        cartItems.style.height = '50vh'; // Volver a la altura establecida si hay productos
+      /*   cartItems.style.height = '50vh'; // Volver a la altura establecida si hay productos */
         cartItems.style.display = 'block'; // Mostrar el contenedor si tiene productos
     }
 }
 
 function abrirModalCarrito() {
     const cartModal = document.getElementById('cart-modal');
-    console.log(cartModal)
     if (cartModal) {
         cartModal.classList.add('open'); // Agrega la clase para mostrar el modal
-        console.log(cartModal)
     }
 }
 
@@ -248,6 +246,8 @@ window.addEventListener('resize', ocultarElementosFueraDeLaVista);
 document.addEventListener('click', function(e) {
     const cartModal = document.getElementById('cart-modal');
     const cartIcon = document.getElementById('cart-icon');
+    const navbarMenu = document.getElementById('navbar-menu-id');
+    const navbarToggler = document.getElementById('navbar-toggler');
     const addToCartButtons = document.querySelectorAll('button[onclick^="agregarAlCarrito"]');
 
     // Verificar si el clic fue dentro del carrito o el ícono del carrito
@@ -265,6 +265,14 @@ document.addEventListener('click', function(e) {
     if (cartModal.classList.contains('open') && !isClickInsideCart && !isClickAddToCart) {
         cartModal.classList.remove('open');
     }
+
+    // Verificar si el clic fue fuera del menú de navegación
+    const isClickInsideNavbar = navbarMenu.contains(e.target) || navbarToggler.contains(e.target);
+
+    // Cerrar el menú si está activo y el clic fue fuera de él
+    if (navbarMenu.classList.contains('active') && !isClickInsideNavbar) {
+        navbarMenu.classList.remove('active');
+    }
 });
 
 
@@ -275,7 +283,7 @@ document.addEventListener('click', function(e) {
 /* -------------------------------------------------------------------------------- */
 
 document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    event.preventDefault();
     
     // Limpiar mensajes de error
     let hasError = false;
