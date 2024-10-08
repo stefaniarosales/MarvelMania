@@ -154,7 +154,7 @@ main {
   z-index: 1000;
 
   @media (max-width: 768px) {
-    width: 70%;
+    width: 80%;
   }
 }
 
