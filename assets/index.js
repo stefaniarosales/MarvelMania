@@ -107,7 +107,6 @@ function agregarAlCarrito(id) {
     } else {
         carrito.push({ ...producto, cantidad: 1 });
     }
-
     actualizarCarrito();
     guardarCarrito();
     abrirModalCarrito();
@@ -117,18 +116,22 @@ function agregarAlCarrito(id) {
 function actualizarCarrito() {
     const cartItems = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
+    const cartCount = document.getElementById('cart-count');
+    console.log(cartCount)
+
     cartItems.innerHTML = '';
 
     let total = 0;
+    let cantidadTotalProductos = 0;
 
     carrito.forEach(producto => {
         total += producto.precio * producto.cantidad;
+        cantidadTotalProductos += producto.cantidad;
 
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('cart-item');
 
         itemDiv.innerHTML = `
-        
             <div class="info-item">
                 <span>${producto.nombre}</span>
                 <button onclick="cambiarCantidad(${producto.id}, -1)">-</button>
@@ -143,9 +146,11 @@ function actualizarCarrito() {
     });
 
     cartTotal.innerText = total.toFixed(2);
+    cartCount.innerText = cantidadTotalProductos;
 
-     // Comprobar si el carrito está vacío
-     if (carrito.length === 0) {
+
+    // Comprobar si el carrito está vacío
+    if (carrito.length === 0) {
         cartItems.style.height = 'auto'; // Ajustar la altura
         cartItems.style.display = 'none'; // Ocultar el contenedor si está vacío
     } else {
@@ -155,24 +160,28 @@ function actualizarCarrito() {
 }
 
 function abrirModalCarrito() {
-    const cartIcon = document.getElementById('cart-icon');
     const cartModal = document.getElementById('cart-modal');
-    cartModal.classList.add('open');
-    cartIcon.innerHTML = '❌';
-
+    console.log(cartModal)
+    if (cartModal) {
+        cartModal.classList.add('open'); // Agrega la clase para mostrar el modal
+        console.log(cartModal)
+    }
 }
 
 function cambiarCantidad(id, delta) {
     const producto = carrito.find(p => p.id === id);
-    producto.cantidad += delta;
+    
+    if (producto) {
+        producto.cantidad += delta;
 
-    if (producto.cantidad <= 0) {
-        eliminarDelCarrito(id);
-    } else {
-        actualizarCarrito();
-        guardarCarrito();
-        ocultarElementosFueraDeLaVista();
+        if (producto.cantidad <= 0) {
+            eliminarDelCarrito(id);
+        } else {
+            actualizarCarrito();
+            guardarCarrito();
+        }
     }
+    event.stopPropagation();
 }
 
 function eliminarDelCarrito(id) {
@@ -183,6 +192,7 @@ function eliminarDelCarrito(id) {
         guardarCarrito();
         ocultarElementosFueraDeLaVista();
     }
+    event.stopPropagation();
 }
 
 document.getElementById('checkout-btn').addEventListener('click', function() {
@@ -204,11 +214,10 @@ cargarCarrito();
 // Lógica para abrir y cerrar el carrito
 document.getElementById('cart-icon').addEventListener('click', function() {
     const cartModal = document.getElementById('cart-modal');
-    const isOpen = cartModal.classList.toggle('open');
-    this.innerHTML = isOpen ? '❌' : '🛒';
-});
+    cartModal.classList.toggle('open');
+}); 
 
-
+//Lógica para abrir y cerrar el menú hamburguesa
 document.getElementById('navbar-toggler').addEventListener('click', function() {
     const menu = document.getElementById('navbar-menu');
     const isActive = menu.classList.toggle('active');
@@ -217,23 +226,11 @@ document.getElementById('navbar-toggler').addEventListener('click', function() {
     this.innerHTML = isActive ? "✖" : "☰"
 });
 
+
 // Función para ocultar los items fuera de la vista
 function ocultarElementosFueraDeLaVista() {
-
     const cartItems = document.querySelectorAll('.cart-item');
     const cartModal = document.getElementById('cart-items')
-
-     // Verificar que el contenedor exista y tenga un valor de altura
-     if (!cartModal) {
-        console.error("No se encontró el contenedor del carrito.");
-        return;
-    }
-
-    // Verificar que el contenedor tenga un valor válido de altura
-    if (cartModal.clientHeight === 0) {
-        console.warn("El contenedor del carrito no tiene altura visible.");
-        return;
-    }
 
     cartItems.forEach(item => {
         if (item.offsetTop > cartModal.clientHeight) {
@@ -243,32 +240,33 @@ function ocultarElementosFueraDeLaVista() {
         }
     });
 }
-
 // Llamar a la función cuando se cambia el tamaño de la ventana
 window.addEventListener('resize', ocultarElementosFueraDeLaVista);
 
+
 //cerrar el carrito y el menu si estos se encuentran abiertos
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function(e) {
     const cartModal = document.getElementById('cart-modal');
     const cartIcon = document.getElementById('cart-icon');
-    const navbarMenu = document.getElementById('navbar-menu-id');
-    const navbarToggler = document.getElementById('navbar-toggler');
+    const addToCartButtons = document.querySelectorAll('button[onclick^="agregarAlCarrito"]');
 
-    const isClickInsideCart = cartModal.contains(event.target) || cartIcon.contains(event.target);
-    const isClickInsideMenu = navbarMenu.contains(event.target) || navbarToggler.contains(event.target);
+    // Verificar si el clic fue dentro del carrito o el ícono del carrito
+    const isClickInsideCart = cartModal.contains(e.target) || cartIcon.contains(e.target);
 
-    // Cerrar carrito si está abierto y el clic fue fuera de él
-    if (cartModal.classList.contains('open') && !isClickInsideCart) {
+    // Verificar si el clic fue en un botón de "Agregar al carrito"
+    let isClickAddToCart = false;
+    addToCartButtons.forEach(button => {
+        if (button.contains(e.target)) {
+            isClickAddToCart = true;
+        }
+    });
+
+    // Cerrar el carrito solo si el clic fue fuera del carrito y no en "Agregar al carrito"
+    if (cartModal.classList.contains('open') && !isClickInsideCart && !isClickAddToCart) {
         cartModal.classList.remove('open');
-        cartIcon.innerHTML = '🛒';
-    }
-
-    // Cerrar menú si está activo y el clic fue fuera de él
-    if (navbarMenu.classList.contains('active') && !isClickInsideMenu) {
-        navbarMenu.classList.remove('active');
-        navbarToggler.innerHTML = '☰';
     }
 });
+
 
 
 
