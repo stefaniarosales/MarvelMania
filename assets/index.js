@@ -338,7 +338,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     // Mostrar mensaje de éxito si no hay errores
     if (!hasError) {
         document.getElementById('successMessage').textContent = 'El formulario ha sido enviado con éxito.';
-        // Opcional: Aquí podrías enviar el formulario usando Fetch API o XMLHttpRequest si fuera necesario.
         document.getElementById('contactForm').reset(); // Reinicia el formulario
     }
 });

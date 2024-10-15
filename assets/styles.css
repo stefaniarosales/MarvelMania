@@ -45,6 +45,15 @@ main {
     height: 20px;
 }
 
+.logo-menu {
+  width: 20px;
+  margin-top: 1rem;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
 .navbar-menu {
     list-style: none;
     margin: 0;
@@ -72,7 +81,6 @@ main {
 }
 
 .navbar-menu.active {
-    /* Mostrar el menú cuando está activo */
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
@@ -114,7 +122,6 @@ main {
     .navbar-menu li {
         margin: 10px;
         text-align: center;
-        
     }
     .navbar-menu li a {
       color: #000000;
