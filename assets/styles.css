@@ -208,6 +208,10 @@ main {
 .cart-item .info-item span {
   font-size: 1rem;
   color: #000000;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 }
 
 .cart-item .info-item button {
