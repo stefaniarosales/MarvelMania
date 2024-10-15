@@ -151,10 +151,8 @@ function actualizarCarrito() {
 
     // Comprobar si el carrito está vacío
     if (carrito.length === 0) {
-        /* cartItems.style.height = 'auto'; // Ajustar la altura */
         cartItems.style.display = 'none'; // Ocultar el contenedor si está vacío
     } else {
-      /*   cartItems.style.height = '50vh'; // Volver a la altura establecida si hay productos */
         cartItems.style.display = 'block'; // Mostrar el contenedor si tiene productos
     }
 }

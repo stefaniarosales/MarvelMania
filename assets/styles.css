@@ -140,10 +140,9 @@ main {
 /* -------------------------------------------------------------------------------- */
 
 .cart-modal {
-  display: none;
   position: absolute;
   top: 50px;
-  max-height: 80vh;
+  height: 100vh;
   overflow-y: auto;
   right: 0;
   width: 50%;
@@ -153,19 +152,26 @@ main {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
 
+  transform: translateX(100%); /* Modal inicialmente fuera de la vista */
+  opacity: 0; /* Modal inicialmente invisible */
+  visibility: hidden; /* Ocultar modal pero permitir transición */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s;
+
   @media (max-width: 768px) {
-    width: 80%;
+    width: 70%;
   }
 }
 
 .cart-modal.open {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  transform: translateX(0); /* Mueve el modal dentro de la vista */
+  opacity: 1; /* Hace el modal visible */
+  visibility: visible; /* Hacer el modal visible */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s;
 }
 
 .cart-modal h4 {
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .cart-modal p {
@@ -174,7 +180,7 @@ main {
 
 #cart-items {
   overflow-y: auto;
-  max-height: 50vh;
+  max-height: 55vh;
 }
 
 .hidden {
