@@ -181,6 +181,7 @@ main {
 #cart-items {
   overflow-y: auto;
   max-height: 55vh;
+  margin-bottom: 1rem;
 }
 
 .hidden {
