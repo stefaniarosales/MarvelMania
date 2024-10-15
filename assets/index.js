@@ -270,6 +270,7 @@ document.addEventListener('click', function(e) {
     // Cerrar el menú si está activo y el clic fue fuera de él
     if (navbarMenu.classList.contains('active') && !isClickInsideNavbar) {
         navbarMenu.classList.remove('active');
+        navbarToggler.innerHTML = "☰"
     }
 });
 
