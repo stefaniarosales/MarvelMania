@@ -324,8 +324,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
-  object-fit: contain;
-  width: 100%;
+
 }
 
 .contenedorImg {
@@ -333,18 +332,12 @@ main {
   justify-content: center;
   width: 100%;
   object-fit: contain;
-  padding-top: 50px;
+  padding-top: 40px;
 }
 
 .contenedorImg img {
   width: 100%;
 }
-
-.ocultar {
-  display: none;
-
-}
-
 /* -------------------------------------------------------------------------------------*/
 /* ---------------------------------- Section-About Us -------------------------------- */
 /* ------------------------------------------------------------------------------------ */
