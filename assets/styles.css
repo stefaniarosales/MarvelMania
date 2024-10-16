@@ -324,6 +324,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
+  object-fit: contain;
 
 }
 
@@ -332,7 +333,7 @@ main {
   justify-content: center;
   width: 100%;
   object-fit: contain;
-  padding-top: 40px;
+  padding-top: 50px;
 }
 
 .contenedorImg img {
