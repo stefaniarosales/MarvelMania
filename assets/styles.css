@@ -325,7 +325,6 @@ main {
   display: flex;
   justify-content: center;
   object-fit: contain;
-
 }
 
 .contenedorImg {
@@ -338,6 +337,57 @@ main {
 
 .contenedorImg img {
   width: 100%;
+}
+
+.welcome-message h1 {
+  font-size: 3rem;
+  color: #1b211c;
+  opacity: 0;
+  animation: myAnim 2s ease 0s 1 normal forwards;
+}
+
+@keyframes myAnim {
+	0% {
+		animation-timing-function: ease-in;
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+
+	38% {
+		animation-timing-function: ease-out;
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	55% {
+		animation-timing-function: ease-in;
+		transform: translateY(-65px);
+	}
+
+	72% {
+		animation-timing-function: ease-out;
+		transform: translateY(0);
+	}
+
+	81% {
+		animation-timing-function: ease-in;
+		transform: translateY(-28px);
+	}
+
+	90% {
+		animation-timing-function: ease-out;
+		transform: translateY(0);
+	}
+
+	95% {
+		animation-timing-function: ease-in;
+		transform: translateY(-8px);
+	}
+
+	100% {
+		animation-timing-function: ease-out;
+		transform: translateY(0);
+	}
 }
 /* -------------------------------------------------------------------------------------*/
 /* ---------------------------------- Section-About Us -------------------------------- */
