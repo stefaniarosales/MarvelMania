@@ -322,7 +322,6 @@ main {
 
 #hero {
   width: 100%;
-  background-color: #525056;
   display: flex;
   justify-content: center;
   object-fit: contain;
