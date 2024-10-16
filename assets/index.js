@@ -2,18 +2,24 @@
 /* -------------------------------------------------------------------------------- */
 /* --------------------------------- Menú hamburguesa ----------------------------- */
 /* -------------------------------------------------------------------------------- */
-
+//Lógica para abrir y cerrar el menú hamburguesa
 document.getElementById('navbar-toggler').addEventListener('click', function() {
     const menu = document.getElementById('navbar-menu-id');
     const isActive = menu.classList.toggle('active');
-    console.log(isActive)
     
     // Cambiar el icono de hamburguesa a una "X" y viceversa
     this.innerHTML = isActive ? "✖" : "☰"
-
 });
 
-
+/* //Lógica para abrir y cerrar el menú hamburguesa
+document.getElementById('navbar-toggler').addEventListener('click', function() {
+    const menu = document.getElementById('navbar-menu');
+    const isActive = menu.classList.toggle('active');
+    
+    // Cambiar el icono de hamburguesa a una "X" y viceversa
+    this.innerHTML = isActive ? "✖" : "☰"
+});
+ */
 /* -------------------------------------------------------------------------------- */
 /* --------------------------------- Renderizado de products ---------------------- */
 /* -------------------------------------------------------------------------------- */
@@ -60,7 +66,6 @@ function mostrarProductos() {
                 <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
             </div>
         `;
-
         contenedor.appendChild(productoDiv);
     });
 
@@ -74,7 +79,6 @@ function mostrarProductos() {
         botonVerMas.style.display = 'block';
     }
 }
-
 function cargarMasProductos() {
     mostrarProductos();
 }
@@ -83,7 +87,6 @@ function cargarMasProductos() {
 /* --------------------------------- lógica del carrito --------------------------- */
 /* -------------------------------------------------------------------------------- */
 
-/* LocalStorange */
 //guardar los datos en el localStorange.
 function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito))
@@ -148,7 +151,6 @@ function actualizarCarrito() {
     cartTotal.innerText = total.toFixed(2);
     cartCount.innerText = cantidadTotalProductos;
 
-
     // Comprobar si el carrito está vacío
     if (carrito.length === 0) {
         cartItems.style.display = 'none'; // Ocultar el contenedor si está vacío
@@ -202,7 +204,6 @@ document.getElementById('checkout-btn').addEventListener('click', function() {
     }
 });
 
-
 // Mostrar todos los productos al cargar la página
 filtrarProductos('Todos');
 cargarCarrito();
@@ -212,15 +213,6 @@ document.getElementById('cart-icon').addEventListener('click', function() {
     const cartModal = document.getElementById('cart-modal');
     cartModal.classList.toggle('open');
 }); 
-
-//Lógica para abrir y cerrar el menú hamburguesa
-document.getElementById('navbar-toggler').addEventListener('click', function() {
-    const menu = document.getElementById('navbar-menu');
-    const isActive = menu.classList.toggle('active');
-    
-    // Cambiar el icono de hamburguesa a una "X" y viceversa
-    this.innerHTML = isActive ? "✖" : "☰"
-});
 
 
 // Función para ocultar los items fuera de la vista
@@ -238,7 +230,6 @@ function ocultarElementosFueraDeLaVista() {
 }
 // Llamar a la función cuando se cambia el tamaño de la ventana
 window.addEventListener('resize', ocultarElementosFueraDeLaVista);
-
 
 //cerrar el carrito y el menu si estos se encuentran abiertos
 document.addEventListener('click', function(e) {
@@ -295,7 +286,6 @@ document.getElementById('scrollToTopBtn').addEventListener('click', function() {
         behavior: 'smooth'
     });
 });
-
 
 /* -------------------------------------------------------------------------------- */
 /* --------------------------------- Formulario de Contact ------------------------ */
