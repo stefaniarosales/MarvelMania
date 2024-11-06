@@ -598,9 +598,17 @@ footer {
   background-color:#525056;
   width: 100%;
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .logoFooter {
   width: 2rem;
+}
+
+.nombreCreador {
+  font-size: 10px;
+  font-weight: lighter;
+  margin: 0;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
