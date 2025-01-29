@@ -3,7 +3,7 @@
 **Marvelmania** es una landing page diseñada para los fanáticos del universo Marvel. La aplicación permite explorar productos, agregarlos al carrito y realizar compras de manera intuitiva y sencilla. Además, cuenta con un menú hamburguesa adaptable y un formulario de contacto funcional.
 
 ## 🖼️ Capturas de pantalla  
-![Vista móvil](readme/mobile.png)  
+<img src="https://github.com/stefaniarosales/MarvelMania/blob/main/assets/mobile.png" width="61px"> <img src="https://github.com/stefaniarosales/MarvelMania/blob/main/assets/web.png" width="250px">
 
 ## 🚀 Características  
 ✅ Interfaz intuitiva y fácil de usar ⚡  
